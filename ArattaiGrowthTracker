@@ -1,0 +1,72 @@
+// Jennifer Ariane Menezes dos Santos 325120190
+public class ArattaiGrowthTracker {
+
+    public static void main(String[] args) {
+        System.out.println("=== Análise de Crescimento do Arattai (7 dias) ===");
+        System.out.println();
+
+        // Requisito 1: Inicialização e Armazenamento de Dados (Arrays)
+        int[] downloadsDiarios = {850000, 1050000, 1100000, 950000, 1200000, 1000000, 850000};
+        String[] diasDaSemana = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"};
+
+        // Requisito 2: Cálculo do Total de Downloads (Loop for ou while)
+        int somaDownloads = 0;
+
+        for (int dia : downloadsDiarios) {
+            somaDownloads += dia;
+        }
+
+        System.out.println("[R2] Total de Downloads na Semana: " + somaDownloads);
+        System.out.println();
+
+        // Requisito 3: Identificação do Pico e Mínimo (Loop e Estrutura de Decisão)
+        int contador = 0;
+
+        int picoDownloads = 0;
+        int picoDia = 0;
+        int minimoDownloads = Integer.MAX_VALUE;
+        int minimoDia = 0;
+
+        for (int dia : downloadsDiarios) {
+            if (dia > picoDownloads) {
+                picoDownloads = dia;
+                picoDia = contador;
+            }
+
+            if (dia < minimoDownloads) {
+                minimoDownloads = dia;
+                minimoDia = contador;
+            }
+
+            contador++;
+        }
+
+        System.out.println("[R3] Análise de Extremos:");
+        System.out.println("Dia de Pico de Downloads: " + diasDaSemana[picoDia] + " com " + downloadsDiarios[picoDia] + " downloads.");
+        System.out.println("Dia de Mínimo de Downloads: " + diasDaSemana[minimoDia] + " com " + downloadsDiarios[minimoDia] + " downloads.");
+        System.out.println();
+
+        // Requisito 4: Análise de Metas (Loop e Condicional)
+        int metaDiaria = 1000000;
+        int diasAcimaDaMeta = 0;
+        contador = 0;
+
+        System.out.println("[R4] Análise de Metas (Meta Diária: 1000000):");
+
+        for (int dia : downloadsDiarios) {
+            if (dia > metaDiaria) {
+                diasAcimaDaMeta++;
+                System.out.println(" > " + diasDaSemana[contador] + ": SUCESSO! (" + dia + " downloads)");
+            } else {
+                System.out.println(" > " + diasDaSemana[contador] + ": Não atingiu. (" + dia + " downloads)");
+            }
+
+            contador++;
+        }
+        System.out.println();
+
+        System.out.println("[Relatório Final] O Arattai superou a meta diária em " + diasAcimaDaMeta + " dias esta semana.");
+        System.out.println("=================================================");
+    }
+
+}
